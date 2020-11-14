@@ -23,6 +23,7 @@
           <button class="btn btn-outline-secondary">Lưu</button>
         </div>
       </form>
+      <p *ngIf="duplicated" class="text-warning">Đã tồn tại vùng miền {{regionForm.value.name}} trong cơ sở dữ liệu!</p>
 
       <div class="table-responsive  mt-3">
         <table class="table table-hover">

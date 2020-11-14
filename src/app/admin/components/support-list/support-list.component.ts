@@ -23,6 +23,7 @@ export class SupportListComponent implements OnInit {
   totalPages: number;
   first: boolean;
   last: boolean;
+  clicked = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,21 +44,14 @@ export class SupportListComponent implements OnInit {
     });
   }
 
-  getSupportById() {
-    this.activatedRoute.params.subscribe(next => {
-      this.supportId = next.id;
-    });
-    this.supportService.getSupportById(this.supportId).subscribe(data => {
-      this.support = data;
-    });
-  }
-
   openModal(targetModal, support) {
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static'
     });
     this.support = support;
+    this.support.checked = true;
+    this.supportService.editSupport(this.support).subscribe();
   }
 
   getSupports() {

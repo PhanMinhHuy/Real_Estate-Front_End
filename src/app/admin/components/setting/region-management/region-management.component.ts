@@ -16,6 +16,7 @@ export class RegionManagementComponent implements OnInit {
   totalPages: number;
   first: boolean;
   last: boolean;
+  duplicated = false;
 
   constructor(
     private regionService: RegionService,
@@ -49,11 +50,15 @@ export class RegionManagementComponent implements OnInit {
     if (this.regionForm.valid) {
       if (this.regionForm.value.id) {
         this.regionService.editRegion(this.regionForm.value).subscribe(data => {
-          location.reload();
+          this.regions.unshift(data);
+        }, () => {
+          this.duplicated = true;
         });
       } else {
         this.regionService.createRegion(this.regionForm.value).subscribe(data => {
-          location.reload();
+          this.regions.unshift(data);
+        }, () => {
+          this.duplicated = true;
         });
       }
     }
@@ -68,6 +73,7 @@ export class RegionManagementComponent implements OnInit {
   deleteRegion(id: number) {
     if (confirm(`Bạn có muốn xóa vùng miền có mã là ${id} không?`)) {
       this.regionService.deleteRegion(id).subscribe(() => {
+        this.regions = this.regions.filter(r => r.id !== id);
         alert(`Bạn đã xóa vùng miền có mã là ${id} thành công!`);
       }, () => {
         alert(`Bạn không thể xóa vùng miền có mã là ${id}!`);

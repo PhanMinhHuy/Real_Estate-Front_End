@@ -10,4 +10,5 @@ export interface Support {
   status: boolean;
   createdAt: Date;
   updatedAt: Date;
+  checked: boolean;
 }

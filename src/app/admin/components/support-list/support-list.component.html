@@ -20,6 +20,7 @@
       <caption hidden>Support list</caption>
       <thead>
       <tr>
+        <th></th>
         <th>Email</th>
         <th>Họ tên</th>
         <th>SĐT</th>
@@ -30,6 +31,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let support of supports">
+        <td><i *ngIf="support.checked" class="fa fa-check text-success"></i></td>
         <td>
           <label>{{ support.email }}</label>
         </td>
@@ -53,6 +55,7 @@
       </tr>
       </tbody>
     </table>
+    <p *ngIf="!totalPages">Không tồn tại Yêu cầu trợ giúp nào!</p>
   </div>
 </div>
 
