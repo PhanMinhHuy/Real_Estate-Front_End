@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, pipe } from 'rxjs';
 import { User } from '../models/user';
+import { Role } from '../models/role';
 
 const AUTH_API = 'http://localhost:8080/api/v1/auth/';
 
@@ -63,5 +64,19 @@ export class AuthService {
     } else {
       this.userSubject.next(null);
     }
+  }
+
+  hasRole(role: Role) {
+    let result = false;
+    this.user$.subscribe((user) => {
+      if (user) {
+        user.roles.forEach((userRole) => {
+          if (userRole.roleName === role) {
+            result = true;
+          }
+        });
+      }
+    });
+    return result;
   }
 }

@@ -33,18 +33,38 @@ export class AdvanceSearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.regionService.getRegions().subscribe((next) => {
-      this.regions = next;
-    });
-    this.categoryService.getCategories().subscribe((next) => {
-      this.categories = next;
-    });
-    this.postTypeService.getPostTypes().subscribe((next) => {
-      this.postTypes = next;
-    });
-    this.directionService.getDirections().subscribe((next) => {
-      this.directions = next;
-    });
+    this.regionService.getRegions().subscribe(
+      (next) => {
+        this.regions = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
+    this.categoryService.getCategories().subscribe(
+      (next) => {
+        this.categories = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
+    this.postTypeService.getPostTypes().subscribe(
+      (next) => {
+        this.postTypes = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
+    this.directionService.getDirections().subscribe(
+      (next) => {
+        this.directions = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
     this.searchForm = this.formBuilder.group({
       categoryId: [null],
       regionId: [null],

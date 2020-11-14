@@ -1,4 +1,4 @@
-<form class="content" (ngSubmit)="handleSubmit()">
+<form class="content mt-3" (ngSubmit)="handleSubmit()">
   <h5 id="text">Mua bán bất động sản</h5>
   <div class="form-group-row px-0 mx-0 p-2">
     <div class="col-sm-12">
@@ -32,9 +32,9 @@
           class="form-control"
         >
           <option [ngValue]="null">--Chọn danh mục--</option>
-          <option *ngFor="let category of categories" [ngValue]="category.id">{{
-            category.name
-          }}</option>
+          <option *ngFor="let category of categories" [ngValue]="category.id">
+            {{ category.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -85,7 +85,7 @@
               Giá: <strong>{{ post.price | number }}</strong> VNĐ
             </p>
             <div class="post-info">
-              <div style="height: 26px;">
+              <div style="height: 26px">
                 <div *ngIf="post.region !== null">
                   <i class="fas fa-map-marker-alt"></i> tại
                   {{ post?.region.name }}

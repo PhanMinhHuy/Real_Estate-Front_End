@@ -4,13 +4,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SupportComponent } from './support/support.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormDirective } from './directives/form.directive';
-import {AuthInterceptor} from './helpers/auth.interceptor';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, SupportComponent, FormDirective],
@@ -22,7 +22,7 @@ import {AuthInterceptor} from './helpers/auth.interceptor';
     NoopAnimationsModule,
     NgbModule,
     ReactiveFormsModule,
-    ],
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -31,6 +31,6 @@ import {AuthInterceptor} from './helpers/auth.interceptor';
     },
   ],
   bootstrap: [AppComponent],
-  exports: [FormDirective]
+  exports: [FormDirective],
 })
 export class AppModule {}

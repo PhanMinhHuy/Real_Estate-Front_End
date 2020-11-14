@@ -18,32 +18,45 @@ export class SearchService {
   constructor(private http: HttpClient) {}
   searchAll(option = {}): void {
     this.currentOption = option;
-    this.http
-      .post<List<Post>>(`${this.API}/searchAll`, option)
-      .subscribe((postList) => {
+    this.http.post<List<Post>>(`${this.API}/searchAll`, option).subscribe(
+      (postList) => {
         this.postList = postList;
         this.updatePostList();
-      });
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
   }
 
   searchPendingPosts(option = {}, page): void {
     this.currentOption = option;
     this.http
       .post<List<Post>>(`${this.API}/searchPending?page=${page}`, option)
-      .subscribe((postList) => {
-        this.postList = postList;
-        this.updatePostList();
-      });
+      .subscribe(
+        (postList) => {
+          this.postList = postList;
+          this.updatePostList();
+        },
+        (err) => {
+          location.assign('/error');
+        }
+      );
   }
 
   searchApprovedPosts(option = {}, page): void {
     this.currentOption = option;
     this.http
       .post<List<Post>>(`${this.API}/searchApproved?page=${page}`, option)
-      .subscribe((postList) => {
-        this.postList = postList;
-        this.updatePostList();
-      });
+      .subscribe(
+        (postList) => {
+          this.postList = postList;
+          this.updatePostList();
+        },
+        (err) => {
+          location.assign('/error');
+        }
+      );
   }
 
   jumpToPage(page) {
@@ -52,10 +65,15 @@ export class SearchService {
         `${this.API}/searchAll?page=${page}`,
         this.currentOption
       )
-      .subscribe((postList) => {
-        this.postList = postList;
-        this.updatePostList();
-      });
+      .subscribe(
+        (postList) => {
+          this.postList = postList;
+          this.updatePostList();
+        },
+        (err) => {
+          location.assign('/error');
+        }
+      );
   }
 
   private updatePostList() {

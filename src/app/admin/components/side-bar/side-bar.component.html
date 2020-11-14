@@ -4,7 +4,7 @@
 >
   <div class="sidebar-sticky pt-3">
     <ul class="nav flex-column">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/admin/users">
           <i class="fas fa-user"></i>
           Thành viên
@@ -42,33 +42,48 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="supports">
           <i class="fas fa-info-circle"></i>
           Hỗ trợ
         </a>
       </li>
-      <li class="nav-item">
-        <a href="#statisticMenuLink" data-toggle="collapse" aria-expanded="false" class="nav-link dropdown-toggle">
+      <li class="nav-item" *ngIf="isAdmin()">
+        <a
+          href="#statisticMenuLink"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="nav-link dropdown-toggle"
+        >
           <i class="fas fa-chart-pie"></i>
           Thống kê
         </a>
         <ul class="collapse list-unstyled pl-3" id="statisticMenuLink">
           <li>
-            <a class="nav-link" routerLinkActive="active" routerLink="/admin/view-count-statistic">Số lượt truy cập</a>
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="/admin/view-count-statistic"
+              >Số lượt truy cập</a
+            >
           </li>
           <li>
-            <a class="nav-link" routerLinkActive="active" routerLink="/admin/most-view-count-statistic">Bài đăng xem nhiều nhất</a>
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="/admin/most-view-count-statistic"
+              >Bài đăng xem nhiều nhất</a
+            >
           </li>
         </ul>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="setting">
           <i class="fas fa-cog"></i>
           Thiết lập
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin()">
         <a
           class="nav-link"
           routerLinkActive="active"

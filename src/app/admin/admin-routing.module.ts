@@ -7,9 +7,9 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PostDetailComponent} from './components/post/post-detail/post-detail.component';
-import {ViewCountStatisticComponent} from "./components/statistic/view-count-statistic/view-count-statistic.component";
-import {MostViewCountStatisticComponent} from "./components/statistic/most-view-count-statistic/most-view-count-statistic.component";
+import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
+import { ViewCountStatisticComponent } from './components/statistic/view-count-statistic/view-count-statistic.component';
+import { MostViewCountStatisticComponent } from './components/statistic/most-view-count-statistic/most-view-count-statistic.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { Role } from '../models/role';
 import { SupportListComponent } from './components/support-list/support-list.component';
@@ -25,24 +25,38 @@ const routes: Routes = [
         redirectTo: 'users',
       },
       {
+        path: 'mod',
+        redirectTo: 'pending-posts',
+      },
+      {
         path: 'users',
         component: UserListComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'user-detail/:id',
         component: UserDetailComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'post-detail/:id',
         component: PostDetailComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'view-count-statistic',
         component: ViewCountStatisticComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'most-view-count-statistic',
         component: MostViewCountStatisticComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'pending-posts',
@@ -55,6 +69,8 @@ const routes: Routes = [
       {
         path: 'authorization',
         component: AuthorizationComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'info',
@@ -63,10 +79,14 @@ const routes: Routes = [
       {
         path: 'supports',
         component: SupportListComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
       {
         path: 'setting',
         component: SettingComponent,
+        canActivate: [AuthGuardService],
+        data: { roles: [Role.ADMIN] },
       },
     ],
     canActivate: [AuthGuardService],

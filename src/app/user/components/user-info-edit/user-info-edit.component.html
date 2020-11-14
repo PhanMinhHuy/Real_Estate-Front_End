@@ -1,10 +1,17 @@
 <div class="info-edit">
   <h3 class="font-weight-normal">Chỉnh sửa thông tin cá nhân</h3>
-  <form appFocusInvalidInput class="row mt-4" [formGroup]="infoEditForm" (ngSubmit)="onSubmit()">
+  <form
+    appFocusInvalidInput
+    class="row mt-4"
+    [formGroup]="infoEditForm"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="col-4 text-center">
-      <span *ngIf="!imageUrl"><img [src]="infoEditForm.value.avatar" alt="avatar" class="avatar"></span>
+      <span *ngIf="!imageUrl"
+        ><img [src]="infoEditForm.value.avatar" alt="avatar" class="avatar"
+      /></span>
       <span *ngIf="imageUrl">
-        <img [src]="imageUrl" alt="avatar" class="avatar" multiple>
+        <img [src]="imageUrl" alt="avatar" class="avatar" multiple />
         <span class="row mt-1">
           <span class="col-1"></span>
           <span class="col-9">
@@ -14,7 +21,11 @@
               [value]="uploadPercent | async"
               [animated]="true"
             >
-              <span *ngIf="(uploadPercent | async) == 100" style="font-size: 6px">Completed!</span>
+              <span
+                *ngIf="(uploadPercent | async) == 100"
+                style="font-size: 6px;"
+                >Completed!</span
+              >
             </ngb-progressbar>
           </span>
           <span class="col-2"></span>
@@ -22,55 +33,95 @@
       </span>
       <div class="file btn btn-primary mt-2" id="btn-upload">
         Chọn ảnh đại diện
-        <input type="file" name="file" id="input-upload" multiple (change)="detectFile($event)">
+        <input
+          type="file"
+          name="file"
+          id="input-upload"
+          multiple
+          (change)="detectFile($event)"
+        />
       </div>
-
     </div>
     <div class="vertical col-1"></div>
     <div class="col-7">
       <div class="form-group row">
-        <label class="col-form-label col-5"><b>Họ tên:<span class="required">*</span></b></label>
+        <label class="col-form-label col-5"
+          ><b>Họ tên:<span class="required">*</span></b></label
+        >
         <div class="col-7 pr-1">
-          <input class="form-control" formControlName="name">
-          <p *ngIf="infoEditForm.controls.name.errors?.required && infoEditForm.controls.name.touched"
-             class="text-danger">
+          <input class="form-control" formControlName="name" />
+          <p
+            *ngIf="
+              infoEditForm.controls.name.errors?.required &&
+              infoEditForm.controls.name.touched
+            "
+            class="text-danger"
+          >
             Vui lòng nhập tên của bạn!
           </p>
-          <p *ngIf="infoEditForm.controls.name.errors?.maxlength && infoEditForm.controls.name.touched"
-             class="text-danger">
+          <p
+            *ngIf="
+              infoEditForm.controls.name.errors?.maxlength &&
+              infoEditForm.controls.name.touched
+            "
+            class="text-danger"
+          >
             Tên của bạn vượt quá số ký tự cho phép. Vui lòng nhập lại!
           </p>
-<!--          <p *ngIf="infoEditForm.controls.name.errors?.pattern && infoEditForm.controls.name.touched"-->
-<!--            class="text-danger">-->
-<!--            Bạn đã nhập sai định dạng. Vui lòng nhập lại!-->
-<!--          </p>-->
+          <!--          <p *ngIf="infoEditForm.controls.name.errors?.pattern && infoEditForm.controls.name.touched"-->
+          <!--            class="text-danger">-->
+          <!--            Bạn đã nhập sai định dạng. Vui lòng nhập lại!-->
+          <!--          </p>-->
         </div>
-
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-5"><b>Địa chỉ:<span class="required">*</span></b></label>
+        <label class="col-form-label col-5"
+          ><b>Địa chỉ:<span class="required">*</span></b></label
+        >
         <div class="col-7 pr-1">
-          <input class="form-control" formControlName="address">
-          <p *ngIf="infoEditForm.controls.address.errors?.required && infoEditForm.controls.address.touched"
-             class="text-danger">
+          <input class="form-control" formControlName="address" />
+          <p
+            *ngIf="
+              infoEditForm.controls.address.errors?.required &&
+              infoEditForm.controls.address.touched
+            "
+            class="text-danger"
+          >
             Vui lòng nhập địa chỉ của bạn!
           </p>
-          <p *ngIf="infoEditForm.controls.address.errors?.maxlength && infoEditForm.controls.address.touched"
-             class="text-danger">
+          <p
+            *ngIf="
+              infoEditForm.controls.address.errors?.maxlength &&
+              infoEditForm.controls.address.touched
+            "
+            class="text-danger"
+          >
             Địa chỉ của bạn vượt quá số ký tự cho phép. Vui lòng nhập lại!
           </p>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-5"><b>Số điện thoại:<span class="required">*</span></b></label>
+        <label class="col-form-label col-5"
+          ><b>Số điện thoại:<span class="required">*</span></b></label
+        >
         <div class="col-7 pr-1">
-          <input class="form-control" formControlName="phoneNumber">
-          <p *ngIf="infoEditForm.controls.phoneNumber.errors?.required && infoEditForm.controls.phoneNumber.touched"
-             class="text-danger">
+          <input class="form-control" formControlName="phoneNumber" />
+          <p
+            *ngIf="
+              infoEditForm.controls.phoneNumber.errors?.required &&
+              infoEditForm.controls.phoneNumber.touched
+            "
+            class="text-danger"
+          >
             Vui lòng nhập số điện thoại!
           </p>
-          <p *ngIf="infoEditForm.controls.phoneNumber.errors?.pattern && infoEditForm.controls.phoneNumber.touched"
-             class="text-danger">
+          <p
+            *ngIf="
+              infoEditForm.controls.phoneNumber.errors?.pattern &&
+              infoEditForm.controls.phoneNumber.touched
+            "
+            class="text-danger"
+          >
             Số điện thoại của bạn sai định dạng. Vui lòng nhập lại!
           </p>
         </div>

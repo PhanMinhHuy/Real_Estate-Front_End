@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Region } from '../../../../models/region';
 import { Category } from '../../../../models/category';
 import { CategoryService } from '../../../../services/category.service';
@@ -28,19 +29,32 @@ export class ListAllComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.searchService.listPost$.subscribe((next) => {
-      this.listPost = next;
-    });
+    this.searchService.listPost$.subscribe(
+      (next) => {
+        this.listPost = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
     this.searchService.searchAll();
-    this.regionService.getRegions().subscribe((next) => {
-      this.regions = next;
-    });
-    this.categoryService.getCategories().subscribe((next) => {
-      this.categories = next;
-    });
+    this.regionService.getRegions().subscribe(
+      (next) => {
+        this.regions = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
+    this.categoryService.getCategories().subscribe(
+      (next) => {
+        this.categories = next;
+      },
+      (err) => {
+        location.assign('/error');
+      }
+    );
   }
-
-
 
   handleSubmit() {
     this.searchService.searchAll({
@@ -51,19 +65,19 @@ export class ListAllComponent implements OnInit {
   }
 
   handleClickNext() {
-      this.searchService.jumpToPage(this.listPost.number + 1);
+    this.searchService.jumpToPage(this.listPost.number + 1);
   }
 
   handleClickPrevious() {
-      this.searchService.jumpToPage(this.listPost.number - 1);
+    this.searchService.jumpToPage(this.listPost.number - 1);
   }
 
   handleClickFirst() {
-      this.searchService.jumpToPage(0);
+    this.searchService.jumpToPage(0);
   }
 
   handleClickLast() {
-      this.searchService.jumpToPage(this.listPost.totalPages - 1);
+    this.searchService.jumpToPage(this.listPost.totalPages - 1);
   }
 
   jumpToPage(page) {
